@@ -1,22 +1,23 @@
-package project;
+package session;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import jakarta.servlet.http.HttpSession;
 /**
- * Servlet implementation class form
+ * Servlet implementation class session
  */
-public class form extends HttpServlet {
+public class session extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public form() {
+    public session() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,13 +37,15 @@ public class form extends HttpServlet {
 		// TODO Auto-generated method stub
 		String name = request.getParameter("name");
 		request.setAttribute("name", name);
-		String prenom = request.getParameter("name");
-		request.setAttribute("prenom", prenom);
+		String lastname = request.getParameter("lastname");
+		request.setAttribute("name", name);
 		String age = request.getParameter("age");
 		request.setAttribute("age", age);
-	
+		HttpSession session = request.getSession();
+		session.setAttribute("name", name);
+		session.setAttribute("lastname", lastname);
+		session.setAttribute("age",age);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
 	}
 
 }
